@@ -1,4 +1,4 @@
-/* @file HelloKeypad.pde
+/* @file HelloKeypad.ino
 || @version 1.0
 || @author Alexander Brevig
 || @contact alexanderbrevig@gmail.com
@@ -9,6 +9,7 @@
    Modified for Keypad_MCP G. D. (Joe) Young July 29/12
    Modified for Keypad_MC16 G. D. (Joe) Young Jan 26/13
    Modified for Keypad_MC17 G. D. (Joe) Young May 18/14
+   Modified for Keypad 5x5 Matrix I2C Board by Mehmet S. Bilge 01/2020
 */
 
 #include <Keypad_MC17.h>
@@ -27,8 +28,8 @@ char keys[ROWS][COLS] = {
   {'K','L','M','N','O'}
 };
 
-byte rowPins[ROWS] = {4,3,2,1,0}; //connect to the row pinouts of the keypad
-byte colPins[COLS] = {8,9,10,11,12}; //connect to the column pinouts of the keypad
+byte rowPins[ROWS] = {4,3,2,1,0};     //Row pin connections to the MCP23017
+byte colPins[COLS] = {8,9,10,11,12};  //Column pin connections to the MCP23017
 
 Keypad_MC17 keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS, I2CADDR );
 

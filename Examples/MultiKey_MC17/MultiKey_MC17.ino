@@ -13,6 +13,8 @@
 || | example of how you can get multiple key presses from a keypad or
 || | keyboard.
 || #
+|| 
+|| Modified for Keypad 5x5 Matrix I2C Board by Mehmet S. Bilge 01/2020
 */
 
 #include <Keypad.h>
@@ -31,35 +33,21 @@ char keys[ROWS][COLS] = {
   {'K','L','M','N','O'}
 };
 
-byte rowPins[ROWS] = {4,3,2,1,0}; //connect to the row pinouts of the keypad
-byte colPins[COLS] = {8,9,10,11,12}; //connect to the column pinouts of the keypad
+byte rowPins[ROWS] = {4,3,2,1,0};     //Row pin connections to the MCP23017
+byte colPins[COLS] = {8,9,10,11,12};  //Column pin connections to the MCP23017
 
 
 // modify constructor for I2C i/o
 Keypad_MC17 kpd = Keypad_MC17( makeKeymap(keys), rowPins, colPins, ROWS, COLS, I2CADDR );
 
-
+String msg = "";
 
 void setup() {
   Serial.begin(9600);
   kpd.begin( );            // also starts wire library
-  kpd.setDebounceTime(1);
 }
 
-unsigned long loopCount = 0;
-unsigned long startTime = millis();
-String msg = "";
-
-
-
 void loop() {
-
-  loopCount++;
-  if ( (millis()-startTime)>1000 ) {
-      Serial.println(loopCount);
-      startTime = millis();
-      loopCount = 0;
-  }
 
   // Fills kpd.key[ ] array with up-to 10 active keys.
   // Returns true if there are ANY active keys.
