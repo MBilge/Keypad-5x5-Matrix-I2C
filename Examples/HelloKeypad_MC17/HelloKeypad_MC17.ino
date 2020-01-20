@@ -16,7 +16,7 @@
 #include <Wire.h>
 #include <Keypad.h>
 
-#define I2CADDR 0x27
+#define I2CADDR 0x27 // default address
 
 const byte ROWS = 5; 
 const byte COLS = 5; 
