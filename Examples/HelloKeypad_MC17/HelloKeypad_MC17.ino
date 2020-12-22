@@ -28,7 +28,7 @@ char keys[ROWS][COLS] = {
   {'K','L','M','N','O'}
 };
 
-byte rowPins[ROWS] = {4,3,2,1,0};     //Row pin connections to the MCP23017
+byte rowPins[ROWS] = {0,1,2,3,4};     //Row pin connections to the MCP23017
 byte colPins[COLS] = {8,9,10,11,12};  //Column pin connections to the MCP23017
 
 Keypad_MC17 keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS, I2CADDR );
